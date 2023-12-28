@@ -1,12 +1,24 @@
-"use-client";
+'use client';
 
 import { Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Sidebar from "@/components/sidebar";
+import { useEffect, useState } from "react";
 
 const MobileSidebar = () => {
+
+    // To solve hydration error(is the error when server side and client side rendering are different)
+    const [isMounted, setIsMounted] = useState(false);
+    useEffect(()=>{
+        setIsMounted(true);
+    }, [])
+    if(!isMounted) {
+        return null;
+    }
+    
+    
     return (
         <Sheet>
             <SheetTrigger>
