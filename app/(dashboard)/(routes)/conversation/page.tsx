@@ -59,6 +59,7 @@ const ConversationPage = () => {
         } catch (error: any) {
             console.error(error);
         } finally {
+            // this is used to rehydrate all server components to fetch that latest data (lile once out ai generated responose than our Free trail count increament and so it instantly reflects on our ui)
             router.refresh();
         }
     };
