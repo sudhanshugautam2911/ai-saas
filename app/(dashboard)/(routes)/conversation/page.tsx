@@ -19,6 +19,7 @@ import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 type ChatCompletionRequestMessage = {
     role: string;
@@ -27,6 +28,7 @@ type ChatCompletionRequestMessage = {
 };
 
 const ConversationPage = () => {
+    const proModal = useProModal();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -57,7 +59,13 @@ const ConversationPage = () => {
             form.reset();
 
         } catch (error: any) {
-            console.error(error);
+            // Open Modal if error is due to free trail expired
+            if(error?.response?.status === 403) {
+                proModal.onOpen();
+            }else {
+                console.log(error);
+            }
+
         } finally {
             // this is used to rehydrate all server components to fetch that latest data (lile once out ai generated responose than our Free trail count increament and so it instantly reflects on our ui)
             router.refresh();
