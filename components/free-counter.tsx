@@ -11,10 +11,12 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 interface FreeCounterProps {
     apiLimitCount: number;
+    isPro: boolean;
 }
 
 const FreeCounter = ({
-    apiLimitCount
+    apiLimitCount,
+    isPro = false
 }: FreeCounterProps) => {
 
     const proModal = useProModal();
@@ -28,6 +30,9 @@ const FreeCounter = ({
     if (!mounted) {
         return null;
     }
+    if(isPro) {
+        return null;
+    }
 
     return (
         <div className="px-3">
@@ -39,14 +44,14 @@ const FreeCounter = ({
                         </p>
                         <Progress
                             className="h-3"
-                            value={(apiLimitCount/MAX_FREE_COUNT)*100}
+                            value={(apiLimitCount / MAX_FREE_COUNT) * 100}
                         />
                     </div>
                     <Button onClick={proModal.onOpen} variant="premium" className="w-full">
                         Upgrade
-                        <Zap className="w-4 h-4 ml-2 fill-white"/>
+                        <Zap className="w-4 h-4 ml-2 fill-white" />
                     </Button>
-                </CardContent>  
+                </CardContent>
             </Card>
         </div>
     );

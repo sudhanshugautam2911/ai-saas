@@ -9,10 +9,12 @@ import { useEffect, useState } from "react";
 
 interface MobileSidebarProps {
     apiLimitCount: number;
+    isPro: boolean;
 }
 
 const MobileSidebar = ({
-    apiLimitCount
+    apiLimitCount,
+    isPro = false
 }: MobileSidebarProps) => {
 
     // To solve hydration error(is the error when server side and client side rendering are different)
@@ -33,7 +35,7 @@ const MobileSidebar = ({
                 </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0">
-                <Sidebar apiLimitCount={apiLimitCount}/>
+                <Sidebar apiLimitCount={apiLimitCount} isPro={isPro}/>
             </SheetContent>
         </Sheet>
     );
