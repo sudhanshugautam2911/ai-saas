@@ -6,7 +6,6 @@ import { Heading1Icon, MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import OpenAI from 'openai';
 import { useState } from "react";
 import toast from "react-hot-toast";
 

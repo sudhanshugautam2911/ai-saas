@@ -6,7 +6,6 @@ import { Code, Divide } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import OpenAI from 'openai';
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
