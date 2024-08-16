@@ -57,7 +57,6 @@ export async function POST(req: Request) {
             }))
         });
         let result = await chat.sendMessage("Your next message here"); 
-        console.log(result.response.text());
 
         // Increment API limit if not a pro user
         if (!isPro) {
