@@ -53,9 +53,13 @@ const ConversationPage = () => {
             const response = await axios.post('/api/conversation', {
                 messages: newMessages,
             });
-
-            setMessages((current) => [...current, userMessage, response.data]);
-
+          
+            // console.log("res: ", response.data);
+            setMessages((current) => [
+                ...current,
+                userMessage,
+                { role: "model", content: response.data }
+            ]);
             form.reset();
 
         } catch (error: any) {

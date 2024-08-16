@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // import { checkSubscription } from "@/lib/subscription";
 import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
@@ -11,6 +12,9 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
+// Gemini
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export async function POST(req: Request) {
     try {
@@ -22,9 +26,10 @@ export async function POST(req: Request) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
 
-        if (!openai.apiKey) {
-            return new NextResponse("OpenAI API Key not configured.", { status: 500 });
+        if (!genAI) {
+            return new NextResponse("API Key not configured.", { status: 500 });
         }
+       
 
         if (!messages) {
             return new NextResponse("Messages are required", { status: 400 });
@@ -38,17 +43,31 @@ export async function POST(req: Request) {
             return NextResponse.json("Free trail has expired.", { status: 403 });
         }
 
-        const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages
-        });
+        // Openai
+        // const response = await openai.chat.completions.create({
+        //     model: "gpt-3.5-turbo",
+        //     messages
+        // });
 
-        // increment once user request fullfilled || should not be pro
+        // Gemini
+        const chat = model.startChat({
+            history: messages.map((msg: { role: string, content: string }) => ({
+                role: msg.role,
+                parts: [{ text: msg.content }],
+            }))
+        });
+        let result = await chat.sendMessage("Your next message here"); 
+        console.log(result.response.text());
+
+        // Increment API limit if not a pro user
         if (!isPro) {
             await incrementApiLimit();
         }
 
-        return NextResponse.json(response.choices[0].message);
+        return NextResponse.json(result.response.text());
+
+        // OPENAI
+        // return NextResponse.json(response.choices[0].message);
 
     } catch (error) {
         console.log("[CONVERSATION_ERROR]", error);
