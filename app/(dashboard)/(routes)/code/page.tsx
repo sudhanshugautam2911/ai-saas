@@ -55,14 +55,18 @@ const CodePage = () => {
                 messages: newMessages,
             });
 
-            setMessages((current) => [...current, userMessage, response.data]);
+            setMessages((current) => [
+                ...current,
+                userMessage,
+                { role: "model", content: response.data }
+            ]);
 
             form.reset();
 
         } catch (error: any) {
-            if(error?.response?.status === 403) {
+            if (error?.response?.status === 403) {
                 proModal.onOpen();
-            }else {
+            } else {
                 toast.error("Something went wrong")
             }
         } finally {
@@ -140,13 +144,13 @@ const CodePage = () => {
                                     components={{
                                         pre: ({ node, ...props }) => (
                                             <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
-                                                <pre {...props}/>
+                                                <pre {...props} />
                                             </div>
                                         ),
                                         code: ({ node, ...props }) => (
-                                            <code className="bg-black/10 rounded-lg p-1" {...props}/>
+                                            <code className="bg-black/10 rounded-lg p-1" {...props} />
                                         )
-                                        
+
                                     }}
                                     className="text-sm overflow-hidden leading-7"
                                 >
@@ -154,7 +158,7 @@ const CodePage = () => {
                                 </ReactMarkdown>
                             </div>
                         ))}
-                        
+
                     </div>
                 </div>
             </div>

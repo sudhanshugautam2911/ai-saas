@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+// import OpenAI from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // import { checkSubscription } from "@/lib/subscription";
@@ -8,9 +8,9 @@ import { incrementApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+// const openai = new OpenAI({
+//     apiKey: process.env.OPENAI_API_KEY
+// });
 
 // Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
@@ -50,13 +50,14 @@ export async function POST(req: Request) {
         // });
 
         // Gemini
+        const lastMessage = messages[messages.length - 1].content;
         const chat = model.startChat({
-            history: messages.map((msg: { role: string, content: string }) => ({
+            history: messages.slice(0, -1).map((msg: { role: string, content: string }) => ({
                 role: msg.role,
                 parts: [{ text: msg.content }],
             }))
         });
-        let result = await chat.sendMessage("Your next message here"); 
+        let result = await chat.sendMessage(lastMessage); 
 
         // Increment API limit if not a pro user
         if (!isPro) {
