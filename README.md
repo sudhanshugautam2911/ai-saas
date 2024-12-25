@@ -1,36 +1,20 @@
-### Link to demo: https://www.linkedin.com/posts/sudhanshu-gautam_ai-webdevelopment-nextjs-activity-7148551788181209088-4srz?utm_source=share&utm_medium=member_desktop
+## Video demo: https://www.linkedin.com/posts/sudhanshu-gautam_ai-webdevelopment-nextjs-activity-7148551788181209088-4srz?utm_source=share&utm_medium=member_desktop
 
-## Getting Started
+# 🧠 Genius: Your AI-Powered Creative Assistant  
 
-First, run the development server:
+Genius is a cutting-edge **SaaS application** that harnesses the power of AI to enable users to generate **text**, **images**, **videos**, and **audio** by simply providing prompts. Designed for both creativity and productivity, Genius offers a **user-friendly interface** and a seamless experience. New users can enjoy **5 free prompts**, after which a **monthly subscription** (powered by Stripe) unlocks unlimited potential.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔥 Tech Stack  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **⚡ Next.js**: Fast and scalable front-end framework.  
+- **🌐 TypeScript**: For type-safe and robust code.  
+- **📋 Prisma**: Elegant and efficient database ORM.  
+- **🗂️ PostgreSQL**: Reliable and scalable relational database.  
+- **💳 Stripe**: Seamless payment gateway integration for subscriptions.  
+- **🌟 Planetscale**: Highly scalable and modern database platform.  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Dive into Genius and unlock the full power of AI! Contributions and feedback are welcome. 😊
