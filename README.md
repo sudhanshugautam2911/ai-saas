@@ -1,4 +1,4 @@
-## Video demo: https://www.linkedin.com/posts/sudhanshu-gautam_ai-webdevelopment-nextjs-activity-7148551788181209088-4srz?utm_source=share&utm_medium=member_desktop
+## Video demo: https://dub.sh/Bj3SPPH
 
 # 🧠 Genius: Your AI-Powered Creative Assistant  
 
